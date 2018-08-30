@@ -63,17 +63,46 @@ namespace GraficadorSeñales
 
                 señal.Muestras.Add(new Muestra(i, valorMuestra));
 
-                //Recorrer una  coleccion o arreglo
-                foreach (Muestra muestra in señal.Muestras)
-                {
-                    plnGrafica.Points.Add(new Point(muestra.X * scrContenedor.Width
-                        , (muestra.Y *((scrContenedor.Height / 2.0))
-                    + (scrContenedor.Height / 2))));
-                }
-
-                
             }
 
+            //Recorrer una  coleccion o arreglo
+            foreach (Muestra muestra in señal.Muestras)
+            {
+                plnGrafica.Points.Add(new Point(muestra.X * scrContenedor.Width, (muestra.Y * ((scrContenedor.Height / 2.0) - 30) * -1)
+                + (scrContenedor.Height / 2)));
+            }
+
+        }
+
+        private void btnGraficarRampa_Click(object sender, RoutedEventArgs e)
+        {
+            double tiempoInicial =
+                double.Parse(txtTiempoInicial.Text);
+            double tiempoFinal =
+                double.Parse(txtTiempoFinal.Text);
+            double frecuenciaMuestreo =
+                double.Parse(txtFrecuenciaMuestreo.Text);
+
+            SeñalRampa señal =
+                new SeñalRampa();
+            double periodoMuestreo = 1 / frecuenciaMuestreo;
+
+            plnGrafica.Points.Clear();
+
+            for (double i = tiempoInicial; i <= tiempoFinal; i += periodoMuestreo)
+            {
+                double valorMuestra = señal.EvaluarRampa(i);
+
+                señal.Muestras.Add(new Muestra(i, valorMuestra));
+                //Recorrer una  coleccion o arreglo Aqui se agregan los puntos
+                
+            }
+            //Recorrer una  coleccion o arreglo Aqui se agregan los puntos
+            foreach (Muestra muestra in señal.Muestras)
+            {
+                plnGrafica.Points.Add(new Point(muestra.X * scrContenedor.Width, (muestra.Y * ((scrContenedor.Height / 2.0) - 30) * -1)
+                + (scrContenedor.Height / 2)));
+            }
         }
     }
 }
