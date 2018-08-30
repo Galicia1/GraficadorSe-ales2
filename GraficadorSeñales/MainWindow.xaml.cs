@@ -76,6 +76,7 @@ namespace GraficadorSeñales
 
         private void btnGraficarRampa_Click(object sender, RoutedEventArgs e)
         {
+            //todas las señales ocupan estas 3
             double tiempoInicial =
                 double.Parse(txtTiempoInicial.Text);
             double tiempoFinal =
@@ -85,6 +86,7 @@ namespace GraficadorSeñales
 
             SeñalRampa señal =
                 new SeñalRampa();
+
             double periodoMuestreo = 1 / frecuenciaMuestreo;
 
             plnGrafica.Points.Clear();
