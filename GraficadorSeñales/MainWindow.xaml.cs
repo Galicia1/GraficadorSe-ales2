@@ -91,13 +91,9 @@ namespace GraficadorSeñales
             plnEjeX.Points.Add(new Point(((tiempoFinal - tiempoInicial) * scrContenedor.Width), (scrContenedor.Height / 2)));
 
             //Punto del Principio
-            plnEjeY.Points.Add(new Point((0-tiempoInicial)*scrContenedor.Width, //COORDENDA X PUNTO INICIAL
-                ((señal.AmplitudMaxima) * ((scrContenedor.Height / 2.0) - 30) * -1) //VOORDENADA Y PUNTO FINAL 
-                + (scrContenedor.Height / 2)));
+            plnEjeY.Points.Add(new Point(0 - tiempoInicial * scrContenedor.Width, scrContenedor.Height));
             //Punto del Fin
-            plnEjeY.Points.Add(new Point(((0 - tiempoInicial) * scrContenedor.Width), //X FINAL
-                (-señal.AmplitudMaxima)*(((scrContenedor.Height / 2.0) - 30) * -1) //Y final
-                + (scrContenedor.Height / 2)));
+            plnEjeY.Points.Add(new Point(0-tiempoInicial*scrContenedor.Width,scrContenedor.Height*-1));
 
       
 
