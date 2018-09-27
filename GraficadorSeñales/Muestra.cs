@@ -26,5 +26,7 @@ namespace GraficadorSeñales
             X = 0.0;
             Y = 0.0;
         }
+
+        
     }
 }

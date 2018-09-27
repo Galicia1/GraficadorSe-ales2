@@ -24,7 +24,6 @@ namespace GraficadorSeñales
             {
                 double valorMuestra = evaluar(i);
 
-
                 if (Math.Abs(valorMuestra) > AmplitudMaxima)
                 {
                     AmplitudMaxima = Math.Abs(valorMuestra);
@@ -32,6 +31,34 @@ namespace GraficadorSeñales
 
                 Muestras.Add(new Muestra(i, valorMuestra));
 
+            }
+        }
+        public void escalar(double factor)
+        {
+            foreach (Muestra muestra in Muestras)
+            {
+                muestra.Y *= factor;
+            }
+        }
+
+        public void desplazarY(double factor)
+        {
+            foreach (Muestra muestra in Muestras)
+            {
+                muestra.Y += factor;
+            }
+        }
+
+
+        public void actualizarAmplitudMaxima()
+        {
+            AmplitudMaxima = 0;
+            foreach(Muestra muestra in Muestras)
+            {
+                if (Math.Abs(muestra.Y) > AmplitudMaxima)
+                {
+                    AmplitudMaxima = Math.Abs(muestra.Y);
+                }
             }
         }
     }

@@ -68,6 +68,15 @@ namespace GraficadorSeñales
 
             señal.construirSeñalDigital();
 
+            //Escalar 
+            double FactorEscala = double.Parse(txtEscalaAmplitud.Text);
+            señal.escalar(FactorEscala);
+
+            double FactorDesplazarY = double.Parse(txtDesplazarY.Text);
+            señal.desplazarY(FactorDesplazarY);
+
+            señal.actualizarAmplitudMaxima();
+
             plnGrafica.Points.Clear();
 
            
@@ -160,6 +169,24 @@ namespace GraficadorSeñales
                         break;
                 }
             }
+
+        }
+
+        private void chDesplazarY_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void chDesplazarY_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void chEscalaAmplitud_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void chEscalaAmplitud_Unchecked(object sender, RoutedEventArgs e)
+        {
 
         }
     }
