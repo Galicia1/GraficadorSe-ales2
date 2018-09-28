@@ -174,20 +174,20 @@ namespace GraficadorSeñales
 
         private void chDesplazarY_Checked(object sender, RoutedEventArgs e)
         {
-
+            txtDesplazarY.IsEnabled = true;
         }
         private void chDesplazarY_Unchecked(object sender, RoutedEventArgs e)
         {
-
+            txtDesplazarY.IsEnabled = false;
         }
 
         private void chEscalaAmplitud_Checked(object sender, RoutedEventArgs e)
         {
-
+            txtEscalaAmplitud.IsEnabled= true;
         }
         private void chEscalaAmplitud_Unchecked(object sender, RoutedEventArgs e)
         {
-
+            txtEscalaAmplitud.IsEnabled = false;
         }
     }
 }

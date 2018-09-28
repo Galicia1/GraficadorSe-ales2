@@ -31,11 +31,11 @@
             <ComboBoxItem>Señal Exponencial</ComboBoxItem>
         </ComboBox>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="579,51,0,0" TextWrapping="Wrap" Text="Tipo de señal" VerticalAlignment="Top" Width="84"/>
-        <TextBox x:Name="txtEscalaAmplitud" HorizontalAlignment="Left" Height="23" Margin="260,42,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtEscalaAmplitud" HorizontalAlignment="Left" Height="23" Margin="260,42,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <TextBlock HorizontalAlignment="Left" Margin="260,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="Escala Amplitud:"/>
-        <TextBox x:Name="txtDesplazarY" HorizontalAlignment="Left" Height="23" Margin="260,94,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtDesplazarY" HorizontalAlignment="Left" Height="23" Margin="260,94,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <TextBlock HorizontalAlignment="Left" Margin="260,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="Deszplazar Y:"/>
-        <CheckBox x:Name="chEscalaAmplitud"  HorizontalAlignment="Left" Margin="398,42,0,0" VerticalAlignment="Top" Checked="chEscalaAmplitud_Checked" Unchecked="chEscalaAmplitud_Unchecked"/>
+        <CheckBox x:Name="chEscalaAmplitud"  HorizontalAlignment="Left" Margin="385,42,0,0" VerticalAlignment="Top" Checked="chEscalaAmplitud_Checked" Unchecked="chEscalaAmplitud_Unchecked"/>
         <CheckBox x:Name="chDesplazarY"  HorizontalAlignment="Left" Margin="385,94,0,0" VerticalAlignment="Top"  Checked="chDesplazarY_Checked" Unchecked="chDesplazarY_Unchecked"/>
 
 
