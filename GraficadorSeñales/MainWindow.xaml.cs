@@ -31,7 +31,7 @@ namespace GraficadorSeñales
 
         private void btnGraficar_Click(object sender, RoutedEventArgs e)
         {
-            
+
             double tiempoInicial =
                 double.Parse(txtTiempoInicial.Text);
             double tiempoFinal =
@@ -40,27 +40,27 @@ namespace GraficadorSeñales
                 double.Parse(txtFrecuenciaMuestreo.Text);
 
             Señal señal;
-            
+
             switch (cbTipoSeñal.SelectedIndex)
             {
                 //Senoidal
                 case 0:
-                double amplitud = double.Parse(((ConfiguracionSeñalSenoidal)(panelConfiguracion.Children[0])).txtAmplitud.Text);
-                double fase = double.Parse(((ConfiguracionSeñalSenoidal)(panelConfiguracion.Children[0])).txtFase.Text);
-                double frecuencia = double.Parse(((ConfiguracionSeñalSenoidal)(panelConfiguracion.Children[0])).txtFrecuencia.Text);
-                señal = new SeñalSenoidal(amplitud, fase, frecuencia);
-                break;
+                    double amplitud = double.Parse(((ConfiguracionSeñalSenoidal)(panelConfiguracion.Children[0])).txtAmplitud.Text);
+                    double fase = double.Parse(((ConfiguracionSeñalSenoidal)(panelConfiguracion.Children[0])).txtFase.Text);
+                    double frecuencia = double.Parse(((ConfiguracionSeñalSenoidal)(panelConfiguracion.Children[0])).txtFrecuencia.Text);
+                    señal = new SeñalSenoidal(amplitud, fase, frecuencia);
+                    break;
                 //Rampa
                 case 1:
-                señal = new SeñalRampa();
-                break;
+                    señal = new SeñalRampa();
+                    break;
                 case 2:
-                double alpha = double.Parse(((ConfiguracionSeñalExponencial)(panelConfiguracion.Children[0])).txtAlpha.Text);
-                señal = new SeñalExponencial(alpha);
-                break;
+                    double alpha = double.Parse(((ConfiguracionSeñalExponencial)(panelConfiguracion.Children[0])).txtAlpha.Text);
+                    señal = new SeñalExponencial(alpha);
+                    break;
                 default:
                     señal = null;
-               break;
+                    break;
             }
             señal.TiempoInicial = tiempoInicial;
             señal.TiempoFinal = tiempoFinal;
@@ -75,8 +75,16 @@ namespace GraficadorSeñales
             double FactorDesplazarY = double.Parse(txtDesplazarY.Text);
             señal.desplazarY(FactorDesplazarY);
 
-            señal.actualizarAmplitudMaxima();
+            if ((bool)chTruncar.IsChecked)
+            { 
+            //truncar
+            float FactorUmbral = float.Parse(txtUmbral.Text);
+            señal.truncar(FactorUmbral);
+            }
 
+
+            señal.actualizarAmplitudMaxima();
+            
             plnGrafica.Points.Clear();
 
            
@@ -188,6 +196,15 @@ namespace GraficadorSeñales
         private void chEscalaAmplitud_Unchecked(object sender, RoutedEventArgs e)
         {
             txtEscalaAmplitud.IsEnabled = false;
+        }
+
+        private void chTruncar_Checked(object sender, RoutedEventArgs e)
+        {
+            txtUmbral.IsEnabled = true;
+        }
+        private void chTruncar_Unchecked(object sender, RoutedEventArgs e)
+        {
+            txtUmbral.IsEnabled = false;
         }
     }
 }
