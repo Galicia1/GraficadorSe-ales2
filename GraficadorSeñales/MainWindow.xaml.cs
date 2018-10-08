@@ -75,13 +75,14 @@ namespace GraficadorSeñales
             double FactorDesplazarY = double.Parse(txtDesplazarY.Text);
             señal.desplazarY(FactorDesplazarY);
 
+            //
             if ((bool)chTruncar.IsChecked)
             { 
             //truncar
             float FactorUmbral = float.Parse(txtUmbral.Text);
             señal.truncar(FactorUmbral);
             }
-
+            //
 
             señal.actualizarAmplitudMaxima();
             
@@ -198,6 +199,7 @@ namespace GraficadorSeñales
             txtEscalaAmplitud.IsEnabled = false;
         }
 
+        //
         private void chTruncar_Checked(object sender, RoutedEventArgs e)
         {
             txtUmbral.IsEnabled = true;
@@ -206,5 +208,6 @@ namespace GraficadorSeñales
         {
             txtUmbral.IsEnabled = false;
         }
+        //
     }
 }

@@ -62,6 +62,8 @@ namespace GraficadorSeñales
             }
         }
 
+
+        //
         public void truncar(float umbral)
         {
             foreach(Muestra muestra in Muestras)
@@ -76,6 +78,7 @@ namespace GraficadorSeñales
                 }
             }
         }
+        //
 
     }
 }
