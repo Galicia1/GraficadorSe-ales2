@@ -98,8 +98,8 @@ namespace GraficadorSeñales
                     plnGrafica.Points.Add(new Point((muestra.X - tiempoInicial) * scrContenedor.Width, ((muestra.Y / señal.AmplitudMaxima) * ((scrContenedor.Height / 2.0) - 30) * -1)
                     + (scrContenedor.Height / 2)));
                 }
-                lblAmplitudMaximaY.Text = señal.AmplitudMaxima.ToString();
-                lblAmplitudMaximaNegativaY.Text = "-" + señal.AmplitudMaxima.ToString();
+                lblAmplitudMaximaY.Text = señal.AmplitudMaxima.ToString("F");
+                lblAmplitudMaximaNegativaY.Text = "-" + señal.AmplitudMaxima.ToString("F");
             }
             
             plnEjeX.Points.Clear();
@@ -207,6 +207,11 @@ namespace GraficadorSeñales
         private void chTruncar_Unchecked(object sender, RoutedEventArgs e)
         {
             txtUmbral.IsEnabled = false;
+        }
+
+        private void cbTipoSeñal_Segunda_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
         //
     }
