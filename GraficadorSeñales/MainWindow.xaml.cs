@@ -40,6 +40,7 @@ namespace GraficadorSeñales
                 double.Parse(txtFrecuenciaMuestreo.Text);
 
             Señal señal;
+            Señal segundaSeñal;
 
             switch (cbTipoSeñal.SelectedIndex)
             {
@@ -66,21 +67,72 @@ namespace GraficadorSeñales
             señal.TiempoFinal = tiempoFinal;
             señal.FrecuenciaMuestreo = frecuenciaMuestreo;
 
+            
+
+            switch (cbTipoSeñal_Segunda.SelectedIndex)
+            {
+                //Senoidal
+                case 0:
+                    double amplitud = double.Parse(((ConfiguracionSeñalSenoidal)(panelConfiguracion_Segunda.Children[0])).txtAmplitud.Text);
+                    double fase = double.Parse(((ConfiguracionSeñalSenoidal)(panelConfiguracion_Segunda.Children[0])).txtFase.Text);
+                    double frecuencia = double.Parse(((ConfiguracionSeñalSenoidal)(panelConfiguracion_Segunda.Children[0])).txtFrecuencia.Text);
+                    segundaSeñal = new SeñalSenoidal(amplitud, fase, frecuencia);
+                    break;
+                //Rampa
+                case 1:
+                    segundaSeñal = new SeñalRampa();
+                    break;
+                case 2:
+                    double alpha = double.Parse(((ConfiguracionSeñalExponencial)(panelConfiguracion.Children[0])).txtAlpha.Text);
+                    segundaSeñal = new SeñalExponencial(alpha);
+                    break;
+                default:
+                    segundaSeñal = null;
+                    break;
+            }
+            segundaSeñal.TiempoInicial = tiempoInicial;
+            segundaSeñal.TiempoFinal = tiempoFinal;
+            segundaSeñal.FrecuenciaMuestreo = frecuenciaMuestreo;
+
             señal.construirSeñalDigital();
+            segundaSeñal.construirSeñalDigital();
 
             //Escalar 
-            double FactorEscala = double.Parse(txtEscalaAmplitud.Text);
-            señal.escalar(FactorEscala);
-
-            double FactorDesplazarY = double.Parse(txtDesplazarY.Text);
-            señal.desplazarY(FactorDesplazarY);
-
-            //
+            if ((bool)chEscalaAmplitud.IsChecked)
+            {
+                double FactorEscala = double.Parse(txtEscalaAmplitud.Text);
+                señal.escalar(FactorEscala);
+            }
+            if ((bool)chDesplazarY.IsChecked)
+            {
+                double FactorDesplazarY = double.Parse(txtDesplazarY.Text);
+                señal.desplazarY(FactorDesplazarY);
+                //
+            }
             if ((bool)chTruncar.IsChecked)
             { 
             //truncar
-            float FactorUmbral = float.Parse(txtUmbral.Text);
-            señal.truncar(FactorUmbral);
+                float FactorUmbral = float.Parse(txtUmbral.Text);
+                señal.truncar(FactorUmbral);
+            }
+            //
+
+            if ((bool)chEscalaAmplitud_Segunda.IsChecked)
+            {
+                double FactorEscala = double.Parse(txtEscalaAmplitud_Segunda.Text);
+                segundaSeñal.escalar(FactorEscala);
+            }
+            if ((bool)chDesplazarY_Segunda.IsChecked)
+            {
+                double FactorDesplazarY = double.Parse(txtDesplazarY_Segunda.Text);
+                segundaSeñal.desplazarY(FactorDesplazarY);
+                //
+            }
+            if ((bool)chTruncar_Segunda.IsChecked)
+            {
+                //truncar
+                float FactorUmbral = float.Parse(txtUmbral_Segunda.Text);
+                segundaSeñal.truncar(FactorUmbral);
             }
             //
 
@@ -181,6 +233,24 @@ namespace GraficadorSeñales
 
         }
 
+        private void cbTipoSeñal_Segunda_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            panelConfiguracion_Segunda.Children.Clear();
+            switch(cbTipoSeñal_Segunda.SelectedIndex)
+            {
+                case 0:
+                    panelConfiguracion_Segunda.Children.Add(new ConfiguracionSeñalSenoidal());
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    panelConfiguracion_Segunda.Children.Add(new ConfiguracionSeñalExponencial());
+                    break;
+                default:
+                    break;
+            }
+        }
+
         private void chDesplazarY_Checked(object sender, RoutedEventArgs e)
         {
             txtDesplazarY.IsEnabled = true;
@@ -209,10 +279,14 @@ namespace GraficadorSeñales
             txtUmbral.IsEnabled = false;
         }
 
-        private void cbTipoSeñal_Segunda_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
-        }
+
+        
+
+
+
+
+
         //
     }
 }
