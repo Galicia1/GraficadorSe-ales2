@@ -20,6 +20,8 @@ namespace GraficadorSeñales
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        double amplitudMaxima = 1;
         public MainWindow()
         {
             InitializeComponent();
@@ -136,24 +138,41 @@ namespace GraficadorSeñales
             }
             //
 
+            segundaSeñal.actualizarAmplitudMaxima();
             señal.actualizarAmplitudMaxima();
-            
-            plnGrafica.Points.Clear();
-
            
-            if(señal != null)
+            if (segundaSeñal.AmplitudMaxima > segundaSeñal.AmplitudMaxima)
+            {
+                amplitudMaxima = señal.AmplitudMaxima;
+            }
+            plnGrafica.Points.Clear();
+            plnGraficaDos.Points.Clear();
+
+            lblAmplitudMaximaY.Text = señal.AmplitudMaxima.ToString("F");
+            lblAmplitudMaximaNegativaY.Text = "-" + amplitudMaxima.ToString("F");
+            if (señal != null)
             {
                 //Recorrer una  coleccion o arreglo
                 foreach (Muestra muestra in señal.Muestras)
                 {
 
-                    plnGrafica.Points.Add(new Point((muestra.X - tiempoInicial) * scrContenedor.Width, ((muestra.Y / señal.AmplitudMaxima) * ((scrContenedor.Height / 2.0) - 30) * -1)
+                    plnGrafica.Points.Add(new Point((muestra.X - tiempoInicial) * scrContenedor.Width, ((muestra.Y / amplitudMaxima) * ((scrContenedor.Height / 2.0) - 30) * -1)
                     + (scrContenedor.Height / 2)));
                 }
-                lblAmplitudMaximaY.Text = señal.AmplitudMaxima.ToString("F");
-                lblAmplitudMaximaNegativaY.Text = "-" + señal.AmplitudMaxima.ToString("F");
+               
             }
-            
+            if (segundaSeñal != null)
+            {
+                //Recorrer una  coleccion o arreglo
+                foreach (Muestra muestra in segundaSeñal.Muestras)
+                {
+
+                    plnGraficaDos.Points.Add(new Point((muestra.X - tiempoInicial) * scrContenedor.Width, ((muestra.Y / amplitudMaxima) * ((scrContenedor.Height / 2.0) - 30) * -1)
+                    + (scrContenedor.Height / 2)));
+                }
+
+            }
+
             plnEjeX.Points.Clear();
             //Punto del Principio
             plnEjeX.Points.Add(new Point(0, (scrContenedor.Height / 2)));
