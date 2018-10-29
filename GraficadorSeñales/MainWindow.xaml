@@ -65,6 +65,7 @@
         <ComboBox x:Name="cbTipoOperacion" SelectedIndex="0" HorizontalAlignment="Left" Margin="715,237,0,0" VerticalAlignment="Top" Width="141">
             <ComboBoxItem>Suma</ComboBoxItem>
             <ComboBoxItem>Multiplicación</ComboBoxItem>
+            <ComboBoxItem>Convolución</ComboBoxItem>
         </ComboBox>
         <TextBlock HorizontalAlignment="Left" Margin="715,209,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="112" Height="21"><Run Text="Ti"/><Run Text="po de "/><Run Text="operación:"/><LineBreak/><Run/></TextBlock>
         <ScrollViewer x:Name="scrContenedor_Resultado" HorizontalAlignment="Left" Height="246" Margin="51,201,0,0" VerticalAlignment="Top" Width="840" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" Grid.Row="1">
