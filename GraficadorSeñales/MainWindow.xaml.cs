@@ -64,6 +64,9 @@ namespace GraficadorSeñales
                     double alpha = double.Parse(((ConfiguracionSeñalExponencial)(panelConfiguracion.Children[0])).txtAlpha.Text);
                     señal = new SeñalExponencial(alpha);
                     break;
+                case 3:
+                    señal = new SeñalRectangular();
+                    break;
                 default:
                     señal = null;
                     break;
@@ -90,6 +93,9 @@ namespace GraficadorSeñales
                 case 2:
                     double alpha = double.Parse(((ConfiguracionSeñalExponencial)(panelConfiguracion.Children[0])).txtAlpha.Text);
                     segundaSeñal = new SeñalExponencial(alpha);
+                    break;
+                case 3:
+                    segundaSeñal = new SeñalRectangular();
                     break;
                 default:
                     segundaSeñal = null;
@@ -227,7 +233,7 @@ namespace GraficadorSeñales
                 + (scrContenedor.Height / 2)));
             }
         }
-
+        
         private void cbTipoSeñal_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             panelConfiguracion.Children.Clear();
@@ -242,10 +248,16 @@ namespace GraficadorSeñales
                         break;
 
                     case 1:
+                        double alpha = double.Parse(((ConfiguracionSeñalExponencial)(panelConfiguracion.Children[0])).txtAlpha.Text);
+                        segundaSeñal = new SeñalExponencial(alpha);
                         break;
 
                     case 2://Exponencial
                         panelConfiguracion.Children.Add(new ConfiguracionSeñalExponencial());
+                        break;
+
+                    case 3:
+                        
                         break;
 
                     default:
@@ -272,7 +284,7 @@ namespace GraficadorSeñales
                     break;
             }
         }
-
+      
         private void chDesplazarY_Checked(object sender, RoutedEventArgs e)
         {
             txtDesplazarY.IsEnabled = true;
