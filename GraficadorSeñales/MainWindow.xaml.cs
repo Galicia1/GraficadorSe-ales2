@@ -358,17 +358,13 @@ namespace GraficadorSeñales
             //Punto del Fin
             plnEjeXResultado.Points.Add(new Point(((señalResultado.TiempoFinal - señalResultado.TiempoInicial) * scrContenedor_Resultado.Width), (scrContenedor_Resultado.Height / 2)));
 
+            //arreglar esta wea
             plnEjeYResultado.Points.Clear();
             //Punto del Principio
             plnEjeYResultado.Points.Add(new Point(0 - señalResultado.TiempoInicial * scrContenedor_Resultado.Width, scrContenedor_Resultado.Height));
             //Punto del Fin
             plnEjeYResultado.Points.Add(new Point(0 - señalResultado.TiempoInicial * scrContenedor_Resultado.Width, scrContenedor_Resultado.Height * -1));
-
-
-
-
-
-
+            //arreglar esta wea
 
         }
 
